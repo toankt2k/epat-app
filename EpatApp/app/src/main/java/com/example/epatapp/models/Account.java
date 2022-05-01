@@ -1,6 +1,6 @@
 package com.example.epatapp.models;
 
-public class Account {
+public class Account extends BaseEntity {
     /// <summary>
     /// Khóa chính
     /// </summary>
