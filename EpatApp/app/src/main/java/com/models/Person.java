@@ -14,27 +14,27 @@ public class Person {
         this.code = code;
     }
 
-    public long getId() {
+    public long getIds() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setIds(long id) {
         this.id = id;
     }
 
-    public String getName() {
+    public String getNames() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setNames(String name) {
         this.name = name;
     }
 
-    public long getCode() {
+    public long getCodes() {
         return code;
     }
 
-    public void setCode(long code) {
+    public void setCodes(long code) {
         this.code = code;
     }
 }
