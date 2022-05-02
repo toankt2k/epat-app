@@ -167,7 +167,7 @@
                         android:layout_marginRight="21dp"
                         android:background="@drawable/custom_input"
                         android:hint="Tiền sử bệnh"
-                        android:inputType="textPassword" />
+                        android:inputType="textLongMessage" />
 
                     <Button
                         android:id="@+id/pat_of_patient_submit_btn"

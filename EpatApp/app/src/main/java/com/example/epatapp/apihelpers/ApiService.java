@@ -14,11 +14,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
     Gson gson = new GsonBuilder().create();
     ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.3:5234/api/v1/")
+            .baseUrl("http://168.138.171.44:5000/api/v1/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiService.class);
@@ -26,7 +27,7 @@ public interface ApiService {
     Call<List<Account>> getAccounts();
     @POST("Accounts/login")
     Call<ResponseBody> login(Account account);
-    @GET("Patients/{id}")
-    Call<Patient> getPatient(@Path("id") String id);
+    @GET("Patients/filter")
+    Call<Patient> filterPatient(@Query("textFilter") String name);
 
 }

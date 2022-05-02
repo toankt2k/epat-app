@@ -22,7 +22,7 @@ import retrofit2.Response;
 
 public class PatientFragment extends Fragment {
     private Button btnSearch;
-    private TextView idPatient;
+    private TextView patientName;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,13 +33,13 @@ public class PatientFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         btnSearch = view.findViewById(R.id.search_btn);
-        idPatient = view.findViewById(R.id.pat_code);
+        patientName = view.findViewById(R.id.pat_code);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Gọi api tìm kiếm
-                String id = idPatient.getText().toString();
-                ApiService.apiService.getPatient(id).enqueue(new Callback<Patient>() {
+                String name = patientName.getText().toString();
+                ApiService.apiService.filterPatient(name).enqueue(new Callback<Patient>() {
                     @Override
                     public void onResponse(Call<Patient> call, Response<Patient> response) {
                         Patient patient = response.body();
