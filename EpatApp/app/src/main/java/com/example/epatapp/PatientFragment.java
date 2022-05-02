@@ -54,16 +54,15 @@ public class PatientFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                ApiService.apiService.filterPatient(s).enqueue(new Callback<List<Patient>>() {
+                ApiService.apiService.filterPatient(s).enqueue(new Callback<ResultPatient>() {
                     @Override
-                    public void onResponse(Call<List<Patient>> call, Response<List<Patient>> response) {
-                        List<Patient> list1 = response.body();
-                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
-                        adapter.setList(list1);
+                    public void onResponse(Call<ResultPatient> call, Response<ResultPatient> response) {
+                        ResultPatient resultPatient = response.body();
+                        adapter.setList(resultPatient.getData());
                     }
 
                     @Override
-                    public void onFailure(Call<List<Patient>> call, Throwable t) {
+                    public void onFailure(Call<ResultPatient> call, Throwable t) {
                         System.out.println(t.toString());
                     }
                 });

@@ -84,12 +84,12 @@
                 android:layout_marginRight="21dp"
                 android:queryHint="Tìm kiếm"
                 android:iconifiedByDefault="false"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="0dp"
                 android:background="@drawable/custom_input"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/patRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="21dp"
                 android:layout_marginRight="21dp"/>

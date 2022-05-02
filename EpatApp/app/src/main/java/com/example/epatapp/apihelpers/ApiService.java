@@ -1,5 +1,6 @@
 package com.example.epatapp.apihelpers;
 
+import com.example.epatapp.ResultPatient;
 import com.example.epatapp.models.Account;
 import com.example.epatapp.models.Patient;
 import com.google.gson.Gson;
@@ -17,7 +18,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
-    Gson gson = new GsonBuilder().create();
+    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
     ApiService apiService = new Retrofit.Builder()
             .baseUrl("http://168.138.171.44:5000/api/v1/")
             .addConverterFactory(GsonConverterFactory.create(gson))
@@ -28,6 +29,6 @@ public interface ApiService {
     @POST("Accounts/login")
     Call<ResponseBody> login(Account account);
     @GET("Patients/filter")
-    Call<List<Patient>> filterPatient(@Query("textFilter") String name);
+    Call<ResultPatient> filterPatient(@Query("textFilter") String name);
 
 }
