@@ -11,12 +11,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.epatapp.models.Patient;
+
 import java.util.ArrayList;
 
 public class PatientActivity extends AppCompatActivity {
 
     private ArrayList<String> funcName = new ArrayList<>();
     private ListView funcs;
+    private Patient patient;
 
 
     @Override
@@ -25,6 +28,7 @@ public class PatientActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_patient);
+        patient = (Patient) getIntent().getSerializableExtra("patient");
         setCommponents();
     }
 
@@ -48,6 +52,7 @@ public class PatientActivity extends AppCompatActivity {
                     case 0:
                         //chọn tt bệnh nhân
                         Intent intent = new Intent(PatientActivity.this, PatientInfoActivity.class);
+                        intent.putExtra("patient", patient);
                         startActivity(intent);
                         break;
                     case 1:

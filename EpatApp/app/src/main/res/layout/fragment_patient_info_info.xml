@@ -70,7 +70,7 @@
 
 
             <EditText
-                android:id="@+id/patinet_cmnd"
+                android:id="@+id/patient_cmnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="21dp"

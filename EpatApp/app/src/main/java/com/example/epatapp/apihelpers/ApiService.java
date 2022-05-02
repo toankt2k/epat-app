@@ -1,5 +1,6 @@
 package com.example.epatapp.apihelpers;
 
+import com.example.epatapp.models.MedicalRecord;
 import com.example.epatapp.models.ResultPatient;
 import com.example.epatapp.models.Account;
 import com.google.gson.Gson;
@@ -13,6 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -28,5 +30,7 @@ public interface ApiService {
     Call<ResponseBody> login(Account account);
     @GET("Patients/filter")
     Call<ResultPatient> filterPatient(@Query("textFilter") String name);
+    @GET("MedicalRecords/{id}")
+    Call<MedicalRecord> getMediaRecord(@Path("id") String id);
 
 }

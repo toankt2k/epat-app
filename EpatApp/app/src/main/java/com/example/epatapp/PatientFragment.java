@@ -42,7 +42,7 @@ public class PatientFragment extends Fragment {
         recyclerView = view.findViewById(R.id.patRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         list = new ArrayList<>();
-        adapter = new PatientAdapter(list);
+        adapter = new PatientAdapter(list, getContext());
         recyclerView.setAdapter(adapter);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.view.Window;
 
 import com.example.epatapp.adapter.TabAdapter;
+import com.example.epatapp.models.Patient;
 import com.google.android.material.tabs.TabLayout;
 
 public class PatientInfoActivity extends AppCompatActivity {
 
     ViewPager pager;
     TabLayout tab;
+    private Patient patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
