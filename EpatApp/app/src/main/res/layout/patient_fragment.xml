@@ -82,7 +82,7 @@
                 android:inputType="textPersonName"
                 android:layout_marginLeft="21dp"
                 android:layout_marginRight="21dp"
-                android:hint="Mã bệnh nhân"
+                android:hint="Mã bệnh nhân/CMND"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/custom_input"/>
 

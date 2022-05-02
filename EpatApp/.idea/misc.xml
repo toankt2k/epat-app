@@ -39,6 +39,11 @@
         <entry key="..\:/project/EpatApp/app/src/main/res/menu/bottom_nav.xml" value="0.25" />
         <entry key="..\:/project/android/epat-app/EpatApp/app/src/main/res/layout/activity_login.xml" value="0.15" />
         <entry key="..\:/project/android/epat-app/EpatApp/app/src/main/res/layout/activity_pat_of_patient_info.xml" value="0.25" />
+        <entry key="..\:/project/android/epat-app/EpatApp/app/src/main/res/layout/activity_patient_info.xml" value="0.20416666666666666" />
+        <entry key="..\:/project/android/epat-app/EpatApp/app/src/main/res/layout/activity_treatment_adding.xml" value="0.21" />
+        <entry key="..\:/project/android/epat-app/EpatApp/app/src/main/res/layout/fragment_main_person_info.xml" value="0.14356884057971014" />
+        <entry key="..\:/project/android/epat-app/EpatApp/app/src/main/res/layout/fragment_patient_info_info.xml" value="0.20416666666666666" />
+        <entry key="..\:/project/android/epat-app/EpatApp/app/src/main/res/layout/patient_fragment.xml" value="0.25" />
       </map>
     </option>
   </component>
