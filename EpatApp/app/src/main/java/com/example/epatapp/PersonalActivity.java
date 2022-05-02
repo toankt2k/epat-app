@@ -1,22 +1,15 @@
 package com.example.epatapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
-import android.widget.DatePicker;
 
 
+import com.example.epatapp.adapter.TabAdapter;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.Calendar;
 
 public class PersonalActivity extends AppCompatActivity{
 

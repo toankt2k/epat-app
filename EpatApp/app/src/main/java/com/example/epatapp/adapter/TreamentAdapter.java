@@ -1,4 +1,4 @@
-package com.example.epatapp;
+package com.example.epatapp.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,10 +7,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
+import com.example.epatapp.R;
 import com.google.gson.JsonObject;
-
-import java.util.List;
 
 public class TreamentAdapter extends RecyclerView.Adapter<TreamentAdapter.TreamentViewHolder>{
 

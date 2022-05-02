@@ -1,14 +1,10 @@
 package com.example.epatapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,8 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.epatapp.adapter.PatientAdapter;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.Patient;
+import com.example.epatapp.models.ResultPatient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,18 +52,22 @@ public class PatientFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                ApiService.apiService.filterPatient(s).enqueue(new Callback<ResultPatient>() {
-                    @Override
-                    public void onResponse(Call<ResultPatient> call, Response<ResultPatient> response) {
-                        ResultPatient resultPatient = response.body();
-                        adapter.setList(resultPatient.getData());
-                    }
+                if(s.isEmpty()){
+                    adapter.setList(list);
+                }else {
+                    ApiService.apiService.filterPatient(s).enqueue(new Callback<ResultPatient>() {
+                        @Override
+                        public void onResponse(Call<ResultPatient> call, Response<ResultPatient> response) {
+                            ResultPatient resultPatient = response.body();
+                            adapter.setList(resultPatient.getData());
+                        }
 
-                    @Override
-                    public void onFailure(Call<ResultPatient> call, Throwable t) {
-                        System.out.println(t.toString());
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResultPatient> call, Throwable t) {
+                            System.out.println(t.toString());
+                        }
+                    });
+                }
                 return true;
             }
 

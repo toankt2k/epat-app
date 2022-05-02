@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.Window;
 
+import com.example.epatapp.adapter.TabAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class PatientInfoActivity extends AppCompatActivity {

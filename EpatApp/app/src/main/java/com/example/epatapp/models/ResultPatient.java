@@ -1,4 +1,4 @@
-package com.example.epatapp;
+package com.example.epatapp.models;
 
 import com.example.epatapp.models.Patient;
 

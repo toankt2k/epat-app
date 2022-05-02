@@ -1,4 +1,4 @@
-package com.example.epatapp;
+package com.example.epatapp.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.epatapp.R;
 import com.example.epatapp.models.Patient;
 
 import java.util.List;

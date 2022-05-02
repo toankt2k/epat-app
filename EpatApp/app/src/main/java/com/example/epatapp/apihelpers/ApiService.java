@@ -1,8 +1,7 @@
 package com.example.epatapp.apihelpers;
 
-import com.example.epatapp.ResultPatient;
+import com.example.epatapp.models.ResultPatient;
 import com.example.epatapp.models.Account;
-import com.example.epatapp.models.Patient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -14,7 +13,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
