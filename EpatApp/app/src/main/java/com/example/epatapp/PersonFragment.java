@@ -1,6 +1,7 @@
 package com.example.epatapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,14 +25,16 @@ public class PersonFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.person_fragment,container,false);
-        setComponent(view);
         return view;
     }
 
-    private void setComponent(View view){
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         listFunc = view.findViewById(R.id.list_func);
         setListFunc();
     }
+
     private void setListFunc(){
         funcName.add("Thông tin cá nhân");
         funcName.add("Đổi mật khẩu");
@@ -43,12 +46,16 @@ public class PersonFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i){
                     case 0://chọn tt cs nhân
+                        Intent intent = new Intent(getContext(), PersonalActivity.class);
+                        startActivity(intent);
                         break;
-                    case 2://chọn đổi mk
+                    case 1://chọn đổi mk
+                        Intent intent2 = new Intent(getContext(), ChangePasswordActivity.class);
+                        startActivity(intent2);
                         break;
-                    case 3://chọn đăng xuất
-                        break;
-                    default:
+                    case 2://chọn đăng xuất
+                        Intent intent3 = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent3);
                         break;
                 }
             }

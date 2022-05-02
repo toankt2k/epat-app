@@ -21,7 +21,7 @@ public class PatOfPatientInfoActivity extends AppCompatActivity implements DateP
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_treatment_adding);
+        setContentView(R.layout.activity_pat_of_patient_info);
         setComponents();
     }
 

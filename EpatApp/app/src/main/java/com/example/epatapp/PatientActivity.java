@@ -2,6 +2,7 @@ package com.example.epatapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -46,14 +47,18 @@ public class PatientActivity extends AppCompatActivity {
                 switch (i){
                     case 0:
                         //chọn tt bệnh nhân
+                        Intent intent = new Intent(PatientActivity.this, PatientInfoActivity.class);
+                        startActivity(intent);
                         break;
                     case 1:
                         //chọn tt bệnh án
+                        Intent intent2 = new Intent(PatientActivity.this, PatOfPatientInfoActivity.class);
+                        startActivity(intent2);
                         break;
                     case 2:
                         //chọn tt điều trị
-                        break;
-                    default:
+                        Intent intent3 = new Intent(PatientActivity.this, HistoryOfTreatmentInfor.class);
+                        startActivity(intent3);
                         break;
                 }
             }

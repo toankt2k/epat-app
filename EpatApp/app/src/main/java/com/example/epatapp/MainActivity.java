@@ -15,8 +15,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements HomeFragment.ReplaceFragment
+{
+    private BottomNavigationView nav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setComponents(){
-        BottomNavigationView nav = findViewById(R.id.bottom_nav);
+        nav = findViewById(R.id.bottom_nav);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commitNow();
         nav.setOnItemSelectedListener((NavigationBarView.OnItemSelectedListener) navListener);
     }
@@ -54,4 +55,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    @Override
+    public void replace(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commitNow();
+        nav.setSelectedItemId(R.id.nav_pat);
+    }
 }

@@ -168,6 +168,39 @@
                         android:hint="Nhiệt độ"
                         android:inputType="numberDecimal" />
 
+                    <EditText
+                        android:id="@+id/heal_atm_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginRight="21dp"
+                        android:background="@drawable/custom_input"
+                        android:hint="Huyết áp"
+                        android:inputType="numberDecimal" />
+
+                    <EditText
+                        android:id="@+id/heart_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginRight="21dp"
+                        android:background="@drawable/custom_input"
+                        android:hint="Nhịp tim"
+                        android:inputType="numberDecimal" />
+
+                    <EditText
+                        android:id="@+id/spo2_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginRight="21dp"
+                        android:background="@drawable/custom_input"
+                        android:hint="SPO2"
+                        android:inputType="numberDecimal" />
+
                     <Button
                         android:id="@+id/pat_of_patient_submit_btn"
                         android:layout_width="match_parent"

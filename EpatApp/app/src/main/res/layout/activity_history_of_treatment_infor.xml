@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4285F4"
-    tools:context=".PatientInfoActivity">
+    tools:context=".TreatmentAddingActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/back_patient_btn"
+                    android:id="@+id/back_treatment_btn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="30"
@@ -66,24 +66,21 @@
                     >
 
                     <TextView
-                        android:id="@+id/personName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="center"
                         android:gravity="center_vertical"
                         android:layout_weight="1"
                         android:textColor="#ffffff"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:text="Thông tin bệnh nhân"
+                        android:text="Thông tin điều trị"
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="0dp" />
 
                     <TextView
-                        android:id="@+id/personCode"
+                        android:id="@+id/patient_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_gravity="center"
                         android:gravity="center_vertical"
                         android:layout_weight="1"
                         android:textColor="#ffffff"
@@ -102,69 +99,40 @@
             android:orientation="vertical"
             android:weightSum="30">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/patient_tab"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-
-                    android:background="#00FFFFFF">
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thông tin" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Trạng thái"
-                        />
-
-                </com.google.android.material.tabs.TabLayout>
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/patient_viewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toTopOf="@+id/submit_person_btn"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/patient_tab" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/submit_person_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent">
-
-<!--                    <Button-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_horizontal"-->
-<!--                        android:layout_marginLeft="30dp"-->
-<!--                        android:layout_marginRight="30dp"-->
-<!--                        android:layout_marginBottom="10dp"-->
-<!--                        android:background="@drawable/custom_button_submit"-->
-<!--                        android:text="Lưu thông tin"-->
-<!--                        app:backgroundTint="#3182FB"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent" />-->
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:paddingBottom="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Lịch sử điều trị"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="360dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"/>
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#4285F4"
+                        android:src="@drawable/ic_baseline_add_24"
+                        app:tint="@color/white"
+                        android:layout_marginLeft="320dp"
+                        android:layout_marginTop="20dp"
+                        app:maxImageSize="40dp"/>
+                </LinearLayout>
+            </ScrollView>
 
         </LinearLayout>
 

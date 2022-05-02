@@ -1,6 +1,8 @@
 package com.example.epatapp.models;
 
-public class Account extends BaseEntity {
+import java.io.Serializable;
+
+public class Account extends BaseEntity implements Serializable {
     /// <summary>
     /// Khóa chính
     /// </summary>
@@ -26,6 +28,11 @@ public class Account extends BaseEntity {
     /// vị trí làm việc
     /// </summary>
     private String department_id ;
+
+    public Account(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public String getAccount_id() {
         return account_id;
