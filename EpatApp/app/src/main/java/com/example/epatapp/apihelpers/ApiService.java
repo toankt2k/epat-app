@@ -28,6 +28,6 @@ public interface ApiService {
     @POST("Accounts/login")
     Call<ResponseBody> login(Account account);
     @GET("Patients/filter")
-    Call<Patient> filterPatient(@Query("textFilter") String name);
+    Call<List<Patient>> filterPatient(@Query("textFilter") String name);
 
 }

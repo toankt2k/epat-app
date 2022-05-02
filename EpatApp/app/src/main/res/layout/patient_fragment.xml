@@ -75,27 +75,35 @@
                 android:text="Tìm bệnh nhân"
                 android:gravity="center"/>
 
-            <EditText
-                android:id="@+id/pat_code"
+            <SearchView
+                android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:layout_marginLeft="21dp"
                 android:layout_marginRight="21dp"
-                android:hint="Mã bệnh nhân/CMND"
+                android:queryHint="Tìm kiếm"
+                android:iconifiedByDefault="false"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/custom_input"/>
-
-            <Button
-                android:id="@+id/search_btn"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/patRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="21dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="21dp"
-                android:background="@drawable/custom_button_submit"
-                android:text="Tra cứu"
-                app:backgroundTint="#FF4285F4" />
+                android:layout_marginRight="21dp"/>
+
+<!--            <Button-->
+<!--                android:id="@+id/search_btn"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="21dp"-->
+<!--                android:layout_marginTop="50dp"-->
+<!--                android:layout_marginRight="21dp"-->
+<!--                android:background="@drawable/custom_button_submit"-->
+<!--                android:text="Tra cứu"-->
+<!--                app:backgroundTint="#FF4285F4" />-->
 
         </LinearLayout>
 
