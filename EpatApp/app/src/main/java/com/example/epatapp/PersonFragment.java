@@ -1,7 +1,9 @@
 package com.example.epatapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ public class PersonFragment extends Fragment {
 
     ListView listFunc;
     ArrayList<String> funcName = new ArrayList<>();
+    private SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
@@ -32,6 +35,7 @@ public class PersonFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         listFunc = view.findViewById(R.id.list_func);
+        sharedPreferences = getActivity().getSharedPreferences("authenticated", Context.MODE_PRIVATE);
         setListFunc();
     }
 
@@ -54,6 +58,7 @@ public class PersonFragment extends Fragment {
                         startActivity(intent2);
                         break;
                     case 2://chọn đăng xuất
+                        sharedPreferences.edit().putString("account", null).commit();
                         Intent intent3 = new Intent(getContext(), LoginActivity.class);
                         startActivity(intent3);
                         break;

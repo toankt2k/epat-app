@@ -1,6 +1,7 @@
 package com.example.epatapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.Account;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -26,16 +28,23 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginBtn;
     private TextView text;
     private EditText eUsername, ePassword;
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
+        sharedPreferences = getSharedPreferences("authenticated", MODE_PRIVATE);
+        Account account = new Gson().fromJson(sharedPreferences.getString("account", null), Account.class);
+        if(account!=null){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
         text = findViewById(R.id.loginLabel);
         eUsername = findViewById(R.id.editTextTextPersonName);
         ePassword = findViewById(R.id.editTextTextPassword);
-//        setComponent();
+        setComponent();
     }
     public void login(){
         String username = eUsername.getText().toString();
@@ -57,18 +66,26 @@ public class LoginActivity extends AppCompatActivity {
 
     //gọi api login
     private void callApi(Account account){
-        ApiService.apiService.login(account).enqueue(new Callback<ResponseBody>() {
+        ApiService.apiService.login(account).enqueue(new Callback<Account>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<Account> call, Response<Account> response) {
                 Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
+                Account account1 = response.body();
+                String accountJson = new Gson().toJson(account1);
+                sharedPreferences.edit().putString("account", accountJson).commit();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<Account> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
     }
 }

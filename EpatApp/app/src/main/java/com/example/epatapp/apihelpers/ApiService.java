@@ -12,6 +12,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -27,7 +28,7 @@ public interface ApiService {
     @GET("Accounts")
     Call<List<Account>> getAccounts();
     @POST("Accounts/login")
-    Call<ResponseBody> login(Account account);
+    Call<Account> login(@Body Account account);
     @GET("Patients/filter")
     Call<ResultPatient> filterPatient(@Query("textFilter") String name);
     @GET("MedicalRecords/patient/{id}")

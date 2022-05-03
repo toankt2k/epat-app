@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Window;
 
 import com.example.epatapp.adapter.MediaRecordAdapter;
 import com.example.epatapp.apihelpers.ApiService;
@@ -27,6 +28,8 @@ public class MedicalRecordsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_medical_records);
         recyclerView = findViewById(R.id.medicalRecords);
         list = new ArrayList<>();
