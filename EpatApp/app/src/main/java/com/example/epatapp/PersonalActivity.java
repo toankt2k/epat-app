@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.example.epatapp.adapter.TabAdapter;
@@ -15,6 +19,7 @@ public class PersonalActivity extends AppCompatActivity{
 
     TabLayout tabLayout;
     ViewPager pager;
+    ImageView backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +30,25 @@ public class PersonalActivity extends AppCompatActivity{
     }
     private void setComponents(){
         setTabLayout();
+        //set các action button trong màn hình
+        setActionButton();
+    }
+
+    /*
+    * Hàm set sự kiện cho các button trong màn hình thông tin cá nhân
+    * Author: quyetkaito (02/05/2022)
+    * */
+    private void setActionButton() {
+        //nút quay lại màn hình trước.
+        backButton = findViewById(R.id.back_change_personal_act_btn);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //intent chuyển trở lại màn hình trang chủ.
+                Intent intent = new Intent(PersonalActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setTabLayout(){

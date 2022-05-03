@@ -3,29 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1055" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/activity_change_password.xml" value="0.1" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/activity_history_of_treatment_infor.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/activity_home.xml" value="0.1" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/activity_pat_of_patient_info.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/activity_patient.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/activity_patient_info.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/activity_personal.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/activity_temp_adding.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/activity_treatment_adding.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/fragment_diff_peson_info.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/fragment_main_person_info.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/fragment_patient_info_info.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/fragment_patient_info_status.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/home_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/item_patient.xml" value="0.18" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/item_treatment.xml" value="0.33" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/patient_fragment.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/person_fragment.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/layout/person_info.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/english/Documents/SOC/epat-app/EpatApp/app/src/main/res/menu/bottom_nav.xml" value="0.1527777777777778" />
+        <entry key="..\:/0.PTIT/nam 4 ki 2/Android/epat-app/EpatApp/app/src/main/res/layout/activity_home.xml" value="0.24048913043478262" />
+        <entry key="..\:/0.PTIT/nam 4 ki 2/Android/epat-app/EpatApp/app/src/main/res/layout/activity_login.xml" value="0.24048913043478262" />
+        <entry key="..\:/0.PTIT/nam 4 ki 2/Android/epat-app/EpatApp/app/src/main/res/layout/activity_personal.xml" value="0.24048913043478262" />
+        <entry key="..\:/0.PTIT/nam 4 ki 2/Android/epat-app/EpatApp/app/src/main/res/layout/fragment_diff_peson_info.xml" value="0.24048913043478262" />
+        <entry key="..\:/0.PTIT/nam 4 ki 2/Android/epat-app/EpatApp/app/src/main/res/layout/fragment_main_person_info.xml" value="0.24048913043478262" />
+        <entry key="..\:/0.PTIT/nam 4 ki 2/Android/epat-app/EpatApp/app/src/main/res/layout/person_fragment.xml" value="0.24048913043478262" />
+        <entry key="..\:/0.PTIT/nam 4 ki 2/Android/epat-app/EpatApp/app/src/main/res/layout/person_info.xml" value="0.24048913043478262" />
+        <entry key="..\:/0.PTIT/nam 4 ki 2/Android/epat-app/EpatApp/app/src/main/res/menu/bottom_nav.xml" value="0.2734375" />
         <entry key="..\:/project/EpatApp/app/src/main/res/drawable/custom_button_submit.xml" value="0.1365" />
         <entry key="..\:/project/EpatApp/app/src/main/res/drawable/custom_func_button.xml" value="0.1365" />
         <entry key="..\:/project/EpatApp/app/src/main/res/drawable/custom_input.xml" value="0.139" />
@@ -60,7 +45,6 @@
         <entry key="..\:/project/EpatApp/app/src/main/res/layout/person_fragment.xml" value="0.2" />
         <entry key="..\:/project/EpatApp/app/src/main/res/layout/person_info.xml" value="0.25" />
         <entry key="..\:/project/EpatApp/app/src/main/res/menu/bottom_nav.xml" value="0.25" />
-        <entry key="..\:/project/android/epat-app/EpatApp/app/src/main/res/layout/activity_login.xml" value="0.15" />
       </map>
     </option>
   </component>

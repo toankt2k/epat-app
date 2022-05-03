@@ -40,6 +40,7 @@
                 android:layout_marginLeft="21dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginRight="21dp"
+                android:paddingLeft="10dp"
                 android:background="@drawable/custom_input"
                 android:hint="Họ và tên"
 
@@ -52,6 +53,7 @@
                 android:layout_marginLeft="21dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginRight="21dp"
+                android:paddingLeft="10dp"
                 android:weightSum="10"
                 android:background="@drawable/custom_input">
 
@@ -92,6 +94,7 @@
                 android:layout_marginLeft="21dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginRight="21dp"
+                android:paddingLeft="10dp"
                 android:background="@drawable/custom_input"
                 android:hint="Khác"
                 android:inputType="textPersonName" />

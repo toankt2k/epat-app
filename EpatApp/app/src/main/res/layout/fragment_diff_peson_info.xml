@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="21dp"
                 android:layout_marginTop="50dp"
+                android:paddingLeft="10dp"
                 android:layout_marginRight="21dp"
                 android:background="@drawable/custom_input"
                 android:hint="Số BHYT"
@@ -38,6 +39,7 @@
                 android:layout_marginLeft="21dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginRight="21dp"
+                android:paddingLeft="10dp"
                 android:background="@drawable/custom_input"
                 android:hint="Quốc tịch"
                 android:inputType="textPersonName" />

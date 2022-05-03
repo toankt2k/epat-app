@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         text = findViewById(R.id.loginLabel);
         eUsername = findViewById(R.id.editTextTextPersonName);
         ePassword = findViewById(R.id.editTextTextPassword);
+//        setComponent();
     }
     public void login(){
         String username = eUsername.getText().toString();
@@ -53,18 +54,20 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    //gọi api login
     private void callApi(Account account){
         ApiService.apiService.login(account).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
             }
         });
     }
