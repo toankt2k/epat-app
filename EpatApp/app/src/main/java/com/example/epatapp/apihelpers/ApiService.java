@@ -30,7 +30,7 @@ public interface ApiService {
     Call<ResponseBody> login(Account account);
     @GET("Patients/filter")
     Call<ResultPatient> filterPatient(@Query("textFilter") String name);
-    @GET("MedicalRecords/{id}")
-    Call<MedicalRecord> getMediaRecord(@Path("id") String id);
+    @GET("MedicalRecords/patient/{id}")
+    Call<List<MedicalRecord>> getMediaRecords(@Path("id") String id);
 
 }

@@ -41,7 +41,7 @@ public class PatientActivity extends AppCompatActivity {
         funcs = findViewById(R.id.list_func);
         funcName.add("Thông tin bệnh nhân");
         funcName.add("Thông tin bệnh án");
-        funcName.add("Thông tin điều trị");
+        //        funcName.add("Thông tin điều trị");
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_activated_1,funcName);
 
         funcs.setAdapter(adapter);
@@ -57,14 +57,15 @@ public class PatientActivity extends AppCompatActivity {
                         break;
                     case 1:
                         //chọn tt bệnh án
-                        Intent intent2 = new Intent(PatientActivity.this, PatOfPatientInfoActivity.class);
+                        Intent intent2 = new Intent(PatientActivity.this, MedicalRecordsActivity.class);
+                        intent2.putExtra("patient", patient);
                         startActivity(intent2);
                         break;
-                    case 2:
-                        //chọn tt điều trị
-                        Intent intent3 = new Intent(PatientActivity.this, HistoryOfTreatmentInfor.class);
-                        startActivity(intent3);
-                        break;
+//                    case 2:
+//                        //chọn tt điều trị
+//                        Intent intent3 = new Intent(PatientActivity.this, HistoryOfTreatmentInfor.class);
+//                        startActivity(intent3);
+//                        break;
                 }
             }
         });

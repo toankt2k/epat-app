@@ -13,6 +13,12 @@
         android:theme="@style/Theme.EpatApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MedicalRecordDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicalRecordsActivity"
+            android:exported="false" />
+        <activity
             android:name=".TempAddingActivity"
             android:exported="false" />
         <activity
@@ -38,10 +44,10 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".HomeActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

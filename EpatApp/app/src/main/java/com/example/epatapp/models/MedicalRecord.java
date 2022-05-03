@@ -1,9 +1,10 @@
 package com.example.epatapp.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 //bệnh án
-public class MedicalRecord extends BaseEntity{
+public class MedicalRecord extends BaseEntity implements Serializable {
     /// <summary>
     /// Khóa chính
     /// </summary>

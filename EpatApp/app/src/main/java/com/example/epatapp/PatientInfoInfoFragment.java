@@ -21,8 +21,8 @@ import java.util.Calendar;
 
 public class PatientInfoInfoFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
-    ConstraintLayout picker;
-    EditText birth, name, idNum;
+    private ConstraintLayout picker;
+    private EditText birth, name, idNum;
     private Patient patient;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
