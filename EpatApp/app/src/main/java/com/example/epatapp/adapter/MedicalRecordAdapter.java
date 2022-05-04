@@ -11,18 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.epatapp.MedicalRecordDetailActivity;
-import com.example.epatapp.PatOfPatientInfoActivity;
 import com.example.epatapp.R;
 import com.example.epatapp.models.MedicalRecord;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class MediaRecordAdapter extends RecyclerView.Adapter<MediaRecordAdapter.MedicalRecordViewHolder>{
+public class MedicalRecordAdapter extends RecyclerView.Adapter<MedicalRecordAdapter.MedicalRecordViewHolder>{
     private Context context;
     private List<MedicalRecord> list;
 
-    public MediaRecordAdapter(Context context, List<MedicalRecord> list) {
+    public MedicalRecordAdapter(Context context, List<MedicalRecord> list) {
         this.context = context;
         this.list = list;
     }

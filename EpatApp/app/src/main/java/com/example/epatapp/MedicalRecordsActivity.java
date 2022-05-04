@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.Window;
 
-import com.example.epatapp.adapter.MediaRecordAdapter;
+import com.example.epatapp.adapter.MedicalRecordAdapter;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
 import com.example.epatapp.models.Patient;
@@ -21,7 +21,7 @@ import retrofit2.Response;
 
 public class MedicalRecordsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private MediaRecordAdapter adapter;
+    private MedicalRecordAdapter adapter;
     private List<MedicalRecord> list;
     private Patient patient;
 
@@ -35,9 +35,13 @@ public class MedicalRecordsActivity extends AppCompatActivity {
         list = new ArrayList<>();
         patient = (Patient) getIntent().getSerializableExtra("patient");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MediaRecordAdapter(this, list);
+        adapter = new MedicalRecordAdapter(this, list);
         recyclerView.setAdapter(adapter);
-        ApiService.apiService.getMediaRecords(patient.getPatient_id()).enqueue(new Callback<List<MedicalRecord>>() {
+        callApi();
+    }
+
+    private void callApi() {
+        ApiService.apiService.getMedicalRecords(patient.getPatient_id()).enqueue(new Callback<List<MedicalRecord>>() {
             @Override
             public void onResponse(Call<List<MedicalRecord>> call, Response<List<MedicalRecord>> response) {
                 List<MedicalRecord> medicalRecords = response.body();
@@ -49,5 +53,11 @@ public class MedicalRecordsActivity extends AppCompatActivity {
                 System.out.println("Lỗi: "+t.toString());
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        callApi();
     }
 }

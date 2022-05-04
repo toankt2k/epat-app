@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PatientInfoInfoFragment">
+    tools:context=".fragment.PatientInfoInfoFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,28 +17,40 @@
             android:orientation="vertical"
             android:paddingBottom="20dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="50dp"
+                android:text="Họ và tên"/>
 
             <EditText
                 android:id="@+id/patient_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="21dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginRight="21dp"
                 android:background="@drawable/custom_input"
                 android:hint="Họ và tên"
 
                 android:inputType="textPersonName" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="50dp"
+                android:text="Ngày sinh"/>
             <LinearLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="21dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginRight="21dp"
                 android:weightSum="10"
                 android:background="@drawable/custom_input">
+
 
                 <EditText
                     android:id="@+id/patient_birth"
@@ -68,13 +80,18 @@
             </LinearLayout>
 
 
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="50dp"
+                android:text="Số CMND/CCCD"/>
             <EditText
                 android:id="@+id/patient_cmnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="21dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginRight="21dp"
                 android:background="@drawable/custom_input"
                 android:hint="Số CMND/CCCD"

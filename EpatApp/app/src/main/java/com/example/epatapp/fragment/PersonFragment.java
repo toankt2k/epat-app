@@ -1,4 +1,4 @@
-package com.example.epatapp;
+package com.example.epatapp.fragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,6 +15,11 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.epatapp.ChangePasswordActivity;
+import com.example.epatapp.LoginActivity;
+import com.example.epatapp.PersonalActivity;
+import com.example.epatapp.R;
 
 import java.util.ArrayList;
 

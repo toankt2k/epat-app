@@ -1,4 +1,4 @@
-package com.example.epatapp;
+package com.example.epatapp.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.epatapp.R;
 import com.example.epatapp.adapter.PatientAdapter;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.Patient;

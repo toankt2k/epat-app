@@ -23,6 +23,7 @@
             android:layout_marginTop="20dp"
             android:text="Lịch sử điều trị"/>
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/treament_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginLeft="20dp"

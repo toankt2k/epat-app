@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -32,6 +33,10 @@ public interface ApiService {
     @GET("Patients/filter")
     Call<ResultPatient> filterPatient(@Query("textFilter") String name);
     @GET("MedicalRecords/patient/{id}")
-    Call<List<MedicalRecord>> getMediaRecords(@Path("id") String id);
+    Call<List<MedicalRecord>> getMedicalRecords(@Path("id") String id);
+    @PUT("MedicalRecords")
+    Call<MedicalRecord> updateMedicalRecord(@Body MedicalRecord medicalRecord);
+    @GET("MedicalRecords/{id}")
+    Call<MedicalRecord> getMedicalRecordById(@Path("id") String id);
 
 }

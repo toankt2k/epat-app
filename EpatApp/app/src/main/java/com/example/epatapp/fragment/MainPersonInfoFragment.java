@@ -1,37 +1,43 @@
-package com.example.epatapp;
+package com.example.epatapp.fragment;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
+import com.example.epatapp.R;
 
 import java.util.Calendar;
 
-public class MedicalInforFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
+public class MainPersonInfoFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
+
     ConstraintLayout picker;
-    EditText dateIn;
-    @Nullable
+    EditText birth,name;
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_medical_infor, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_main_person_info, container, false);
         setComponents(view);
+
         return view;
     }
+
     private void setComponents(View view){
         setPicker(view);
-        dateIn = view.findViewById(R.id.patient_date_in);
+        birth = view.findViewById(R.id.personal_birth);
+        name = view.findViewById(R.id.personal_name);
     }
 
     private void setPicker(View view){
-        picker = view.findViewById(R.id.patient_calendar_picker);
+        picker = view.findViewById(R.id.personal_calendar_picker);
         picker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +57,6 @@ public class MedicalInforFragment extends Fragment implements DatePickerDialog.O
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
         String birthString = day + "/" + month + "/" + year;
-        this.dateIn.setText(birthString);
+        this.birth.setText(birthString);
     }
 }

@@ -1,8 +1,7 @@
-package com.example.epatapp;
+package com.example.epatapp.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +12,11 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.epatapp.ChangePasswordActivity;
+import com.example.epatapp.LoginActivity;
+import com.example.epatapp.PersonalActivity;
+import com.example.epatapp.R;
 
 public class HomeFragment extends Fragment {
     private Button searchPatient, changePassword, personInfo, logOut;

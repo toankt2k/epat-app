@@ -9,10 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 
 import com.example.epatapp.adapter.TabAdapter;
+import com.example.epatapp.fragment.DiffPersonInfoFragment;
+import com.example.epatapp.fragment.MainPersonInfoFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class PersonalActivity extends AppCompatActivity{

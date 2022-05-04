@@ -1,4 +1,4 @@
-package com.example.epatapp;
+package com.example.epatapp.fragment;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.example.epatapp.R;
 import com.example.epatapp.models.Patient;
 
 import java.text.SimpleDateFormat;
