@@ -47,6 +47,12 @@ public class PatientInfoActivity extends AppCompatActivity implements DatePicker
         name.setText(patient.getFullname());
         birth.setText(new SimpleDateFormat("dd/MM/yyyy").format(patient.getDate_of_birth()));
         idNum.setText(patient.getIdentity_number());
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
     private void setPicker() {
         picker = findViewById(R.id.patient_calendar_picker);

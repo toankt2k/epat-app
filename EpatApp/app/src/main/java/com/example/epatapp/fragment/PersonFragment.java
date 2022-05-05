@@ -66,6 +66,7 @@ public class PersonFragment extends Fragment {
                         sharedPreferences.edit().putString("account", null).commit();
                         Intent intent3 = new Intent(getContext(), LoginActivity.class);
                         startActivity(intent3);
+                        getActivity().finish();
                         break;
                 }
             }

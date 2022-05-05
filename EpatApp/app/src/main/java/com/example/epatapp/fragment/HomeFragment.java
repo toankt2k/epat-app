@@ -63,6 +63,7 @@ public class HomeFragment extends Fragment {
                 sharedPreferences.edit().putString("account", null).commit();
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 

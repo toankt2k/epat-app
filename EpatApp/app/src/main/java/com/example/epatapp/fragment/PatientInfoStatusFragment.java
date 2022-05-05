@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.epatapp.R;
 import com.example.epatapp.TempAddingActivity;
+import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
 import com.example.epatapp.models.Status;
 import com.example.epatapp.models.Treament;
@@ -28,6 +29,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PatientInfoStatusFragment extends Fragment {
     private Button updateStatusBtn;
@@ -57,6 +62,7 @@ public class PatientInfoStatusFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), TempAddingActivity.class);
+                intent.putExtra("medical_record", medicalRecord);
                 startActivity(intent);
             }
         });
@@ -76,5 +82,22 @@ public class PatientInfoStatusFragment extends Fragment {
         heal_atm.setText("Huyết áp\n"+statusList.get(0).getHeal_atm());
         heart.setText("Nhịp tim\n"+statusList.get(0).getHeart());
         spo2.setText("SPO2\n"+statusList.get(0).getSpo2());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ApiService.apiService.getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
+            @Override
+            public void onResponse(Call<MedicalRecord> call, Response<MedicalRecord> response) {
+                medicalRecord = response.body();
+                setStatus();
+            }
+
+            @Override
+            public void onFailure(Call<MedicalRecord> call, Throwable t) {
+
+            }
+        });
     }
 }

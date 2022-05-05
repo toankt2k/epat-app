@@ -202,7 +202,7 @@
                         android:inputType="numberDecimal" />
 
                     <Button
-                        android:id="@+id/pat_of_patient_submit_btn"
+                        android:id="@+id/btn_add_status"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="21dp"

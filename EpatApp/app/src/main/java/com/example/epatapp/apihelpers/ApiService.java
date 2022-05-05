@@ -28,6 +28,8 @@ public interface ApiService {
             .create(ApiService.class);
     @GET("Accounts")
     Call<List<Account>> getAccounts();
+    @PUT("Accounts")
+    Call<Account> updateAccount();
     @POST("Accounts/login")
     Call<Account> login(@Body Account account);
     @GET("Patients/filter")
