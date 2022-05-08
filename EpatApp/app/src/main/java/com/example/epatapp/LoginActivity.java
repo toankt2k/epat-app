@@ -33,9 +33,13 @@ public class LoginActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
+
         sharedPreferences = getSharedPreferences("authenticated", MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
+
         Account account = new Gson().fromJson(sharedPreferences.getString("account", null), Account.class);
+
+        //nếu đã đăng nhập, token còn hạn => chuyển tới màn hình trang chủ luôn.
         if(token!=null && account!=null){
             ApiHelper.getInstance().setSharedPreferences(sharedPreferences);
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -45,14 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         ePassword = findViewById(R.id.editTextTextPassword);
         setComponent();
     }
-    public void login(){
-        String username = eUsername.getText().toString();
-        String password = ePassword.getText().toString();
-        if(!username.isEmpty() && !password.isEmpty()){
-            Account account = new Account(username, password);
-            callApi(account);
-        }
-    }
+
     private void setComponent(){
         this.loginBtn = findViewById(R.id.loginBtn);
         this.loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +60,22 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    //gọi api login
+    //hàm lấy giá trị gửi đi login của người dùng
+    public void login(){
+        String username = eUsername.getText().toString();
+        String password = ePassword.getText().toString();
+        if(!username.isEmpty() && !password.isEmpty()){
+            Account account = new Account(username, password);
+            callApi(account);
+        }
+    }
+
+    //set sự kiện cho các component trong màn hình
+
+    /**
+     * Gọi API đăng nhập
+     * @param account: đối tượng gửi lên để kiểm tra đăng nhập.
+     */
     private void callApi(Account account){
         ApiTokens.apiService.loginToken(account).enqueue(new Callback<ResultLogin>() {
             @Override
@@ -76,17 +88,19 @@ public class LoginActivity extends AppCompatActivity {
                     if(token!=null & account1 != null){
                         if(!token.isEmpty()){
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+
+                            //lưu lại account và token
                             sharedPreferences.edit().putString("account", accountJson).commit();
                             sharedPreferences.edit().putString("token", token).commit();
                             ApiHelper.getInstance().setSharedPreferences(sharedPreferences);
+
+                            //chuyền tới màn hình trang chủ
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
-
                         }
                     }
-
                 }else{
-                    Toast.makeText(LoginActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
 

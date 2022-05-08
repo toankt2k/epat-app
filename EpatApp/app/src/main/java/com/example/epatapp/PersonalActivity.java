@@ -29,6 +29,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Activity của thông tin cá nhân
+ */
 public class PersonalActivity extends AppCompatActivity{
 
     private ImageView backButton;
@@ -44,34 +47,43 @@ public class PersonalActivity extends AppCompatActivity{
         setContentView(R.layout.activity_personal);
         setComponents();
     }
+
+    /**
+     * Set sự kiện cho các component trong màn hình
+     */
     private void setComponents(){
         sharedPreferences = getSharedPreferences("authenticated", MODE_PRIVATE);
         account = new Gson().fromJson(sharedPreferences.getString("account", null), Account.class);
         name = findViewById(R.id.personal_name);
         birth = findViewById(R.id.personal_birth);
         depart = findViewById(R.id.personal_department);
-        name.setEnabled(false);
-        birth.setEnabled(false);
+
+        //cho phép chỉnh sửa
+        name.setEnabled(true);
+        birth.setEnabled(true);
         depart.setEnabled(false);
-        name.setText(account.getAccount_name());
-        ApiHelper.getInstance().getApiService().getDepartmentById(account.getDepartment_id()).enqueue(new Callback<Department>() {
-            @Override
-            public void onResponse(Call<Department> call, Response<Department> response) {
-                if(response.isSuccessful()){
-                    department = response.body();
-                    if(department!=null)
-                        depart.setText(department.getDepartment_name());
+        if(account!=null){
+            //bind tên người dùng
+            name.setText(account.getAccount_name());
+            //gọi API lấy tên vị trí làm việc
+            ApiHelper.getInstance().getApiService().getDepartmentById(account.getDepartment_id()).enqueue(new Callback<Department>() {
+                @Override
+                public void onResponse(Call<Department> call, Response<Department> response) {
+                    if(response.isSuccessful()){
+                        department = response.body();
+                        if(department!=null)
+                            depart.setText(department.getDepartment_name());
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Department> call, Throwable t) {
-                Toast.makeText(PersonalActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<Department> call, Throwable t) {
+                    Toast.makeText(PersonalActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
 
-        //setTabLayout();
         //set các action button trong màn hình
         setActionButton();
     }
@@ -86,39 +98,9 @@ public class PersonalActivity extends AppCompatActivity{
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //intent chuyển trở lại màn hình trang chủ.
-//                Intent intent = new Intent(PersonalActivity.this,MainActivity.class);
-//                startActivity(intent);
                 finish();
             }
         });
     }
-
-//    private void setTabLayout(){
-//        tabLayout = findViewById(R.id.personal_tab);
-//        pager = findViewById(R.id.personal_viewPager);
-//
-//        TabAdapter adapter = new TabAdapter(getSupportFragmentManager(),FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-//        adapter.addFragment(new MainPersonInfoFragment(),"Thông tin chính");
-//        adapter.addFragment(new DiffPersonInfoFragment(),"Thông tin khác");
-//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
-//        pager.setAdapter(adapter);
-//        tabLayout.setupWithViewPager(pager);
-//    }
 
 }

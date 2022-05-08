@@ -18,6 +18,9 @@ import com.example.epatapp.fragment.PersonFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+/**
+ * Activity của trang chủ
+ */
 public class MainActivity extends AppCompatActivity implements HomeFragment.ReplaceFragment
 {
     private BottomNavigationView nav;
@@ -31,11 +34,18 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.Repl
 
     }
 
+    /**
+     * Set sự kiện cho các component trong màn hình
+     */
     private void setComponents(){
         nav = findViewById(R.id.bottom_nav);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commitNow();
         nav.setOnItemSelectedListener((NavigationBarView.OnItemSelectedListener) navListener);
     }
+
+    /**
+     * Xử lý sự kiện navigation bottom
+     */
     private  NavigationBarView.OnItemSelectedListener navListener = new NavigationBarView.OnItemSelectedListener(){
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
