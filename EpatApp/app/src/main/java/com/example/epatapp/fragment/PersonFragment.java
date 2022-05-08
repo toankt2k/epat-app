@@ -63,6 +63,7 @@ public class PersonFragment extends Fragment {
                         startActivity(intent2);
                         break;
                     case 2://chọn đăng xuất
+                        sharedPreferences.edit().putString("token", null).commit();
                         sharedPreferences.edit().putString("account", null).commit();
                         Intent intent3 = new Intent(getContext(), LoginActivity.class);
                         intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |

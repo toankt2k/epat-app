@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 
 import com.example.epatapp.adapter.TabAdapter;
+import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.fragment.DiffPersonInfoFragment;
 import com.example.epatapp.fragment.MainPersonInfoFragment;
@@ -53,7 +54,7 @@ public class PersonalActivity extends AppCompatActivity{
         birth.setEnabled(false);
         depart.setEnabled(false);
         name.setText(account.getAccount_name());
-        ApiService.apiService.getDepartmentById(account.getDepartment_id()).enqueue(new Callback<Department>() {
+        ApiHelper.apiService.getDepartmentById(account.getDepartment_id()).enqueue(new Callback<Department>() {
             @Override
             public void onResponse(Call<Department> call, Response<Department> response) {
                 if(response.isSuccessful()){

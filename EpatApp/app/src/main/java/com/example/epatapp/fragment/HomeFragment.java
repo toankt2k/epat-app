@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 sharedPreferences.edit().putString("account", null).commit();
+                sharedPreferences.edit().putString("token", null).commit();
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |

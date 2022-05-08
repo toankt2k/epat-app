@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.Patient;
 
@@ -95,7 +96,7 @@ public class PatientActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ApiService.apiService.getPatientById(patient.getPatient_id()).enqueue(new Callback<Patient>() {
+        ApiHelper.apiService.getPatientById(patient.getPatient_id()).enqueue(new Callback<Patient>() {
             @Override
             public void onResponse(Call<Patient> call, Response<Patient> response) {
                 patient = response.body();

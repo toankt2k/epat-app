@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.Account;
 import com.google.gson.Gson;
@@ -52,10 +53,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 String re_new = retype_new_pass.getText().toString();
                 if(account.getPassword().equals(old) && new_p.equals(re_new) && !new_p.isEmpty() && !re_new.isEmpty()){
                     account.setPassword(new_p);
-                    ApiService.apiService.updateAccount(account).enqueue(new Callback<ResponseBody>() {
+                    ApiHelper.apiService.updateAccount(account).enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                             if(response.isSuccessful()){
+                                sharedPreferences.edit().putString("token", null).commit();
                                 sharedPreferences.edit().putString("account", null).commit();
                                 Intent intent = new Intent(ChangePasswordActivity.this, LoginActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |

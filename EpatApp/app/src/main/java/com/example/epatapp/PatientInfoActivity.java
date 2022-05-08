@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.epatapp.adapter.TabAdapter;
+import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.fragment.PatientInfoInfoFragment;
 import com.example.epatapp.fragment.PatientInfoStatusFragment;
@@ -86,7 +87,7 @@ public class PatientInfoActivity extends AppCompatActivity implements DatePicker
                         patient.setPhone_number(ph);
                         patient.setAddress(add);
                         System.out.println("..............."+patient.toString());
-                        ApiService.apiService.updatePatient(patient).enqueue(new Callback<ResponseBody>() {
+                        ApiHelper.apiService.updatePatient(patient).enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if(response.isSuccessful()) {

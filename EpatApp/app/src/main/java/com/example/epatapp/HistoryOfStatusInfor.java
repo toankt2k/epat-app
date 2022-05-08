@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.epatapp.adapter.StatusAdapter;
+import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
 import com.example.epatapp.models.Patient;
@@ -87,7 +88,7 @@ public class HistoryOfStatusInfor extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ApiService.apiService.getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
+        ApiHelper.apiService.getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
             @Override
             public void onResponse(Call<MedicalRecord> call, Response<MedicalRecord> response) {
                 medicalRecord = response.body();

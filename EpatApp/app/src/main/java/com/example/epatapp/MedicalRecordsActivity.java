@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.epatapp.adapter.MedicalRecordAdapter;
+import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
 import com.example.epatapp.models.Patient;
@@ -62,7 +63,7 @@ public class MedicalRecordsActivity extends AppCompatActivity {
     }
 
     private void callApi() {
-        ApiService.apiService.getMedicalRecords(patient.getPatient_id()).enqueue(new Callback<List<MedicalRecord>>() {
+        ApiHelper.apiService.getMedicalRecords(patient.getPatient_id()).enqueue(new Callback<List<MedicalRecord>>() {
             @Override
             public void onResponse(Call<List<MedicalRecord>> call, Response<List<MedicalRecord>> response) {
                 List<MedicalRecord> medicalRecords = response.body();

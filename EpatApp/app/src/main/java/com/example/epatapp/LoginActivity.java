@@ -12,8 +12,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
+import com.example.epatapp.apihelpers.ApiTokens;
 import com.example.epatapp.models.Account;
+import com.example.epatapp.models.ResultLogin;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -32,8 +35,10 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
         sharedPreferences = getSharedPreferences("authenticated", MODE_PRIVATE);
-        Account account = new Gson().fromJson(sharedPreferences.getString("account", null), Account.class);
-        if(account!=null){
+
+        String token = sharedPreferences.getString("token", null);
+        if(token!=null){
+            ApiHelper.token = token;
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
@@ -62,26 +67,35 @@ public class LoginActivity extends AppCompatActivity {
 
     //gọi api login
     private void callApi(Account account){
-        ApiService.apiService.login(account).enqueue(new Callback<Account>() {
+        ApiTokens.apiService.loginToken(account).enqueue(new Callback<ResultLogin>() {
             @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-                Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
-                Account account1 = response.body();
-                String accountJson = new Gson().toJson(account1);
-                sharedPreferences.edit().putString("account", accountJson).commit();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
+            public void onResponse(Call<ResultLogin> call, Response<ResultLogin> response) {
+                if(response.isSuccessful()){
+                    ResultLogin resultLogin = response.body();
+                    Account account1 = resultLogin.getAccount();
+                    String accountJson = new Gson().toJson(account1);
+                    String token = resultLogin.getToken();
+                    if(token!=null){
+                        if(!token.isEmpty()){
+                            sharedPreferences.edit().putString("account", accountJson).commit();
+                            sharedPreferences.edit().putString("token", token).commit();
+                            ApiHelper.token = token;
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+
+                        }
+                    }
+
+                }else{
+                    Toast.makeText(LoginActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<Account> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<ResultLogin> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        finishAffinity();
-//    }
 }

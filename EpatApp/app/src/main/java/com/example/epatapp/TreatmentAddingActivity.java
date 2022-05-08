@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
 import com.example.epatapp.models.Patient;
@@ -91,7 +92,7 @@ public class TreatmentAddingActivity extends AppCompatActivity implements DatePi
                         Treament treament = new Treament(dt, prog);
                         treamentList.add(treament);
                         medicalRecord.setTreatment(gson.toJson(treamentList));
-                        ApiService.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
+                        ApiHelper.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if(response.isSuccessful()){

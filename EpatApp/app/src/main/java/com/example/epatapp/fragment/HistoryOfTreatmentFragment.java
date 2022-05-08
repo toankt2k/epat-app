@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.epatapp.R;
 import com.example.epatapp.TreatmentAddingActivity;
 import com.example.epatapp.adapter.TreamentAdapter;
+import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
 import com.example.epatapp.models.Patient;
@@ -80,7 +81,7 @@ public class HistoryOfTreatmentFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ApiService.apiService.getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
+        ApiHelper.apiService.getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
             @Override
             public void onResponse(Call<MedicalRecord> call, Response<MedicalRecord> response) {
                 medicalRecord = response.body();

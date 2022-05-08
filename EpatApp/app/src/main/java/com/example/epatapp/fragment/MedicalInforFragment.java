@@ -16,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.epatapp.R;
+import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
 
@@ -62,7 +63,7 @@ public class MedicalInforFragment extends Fragment implements DatePickerDialog.O
                         medicalRecord.setDiagnose(reason);
                         medicalRecord.setDiseases(old_info);
                         medicalRecord.setSymptom(symp);
-                        ApiService.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
+                        ApiHelper.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if(response.isSuccessful()) {
@@ -124,7 +125,7 @@ public class MedicalInforFragment extends Fragment implements DatePickerDialog.O
     @Override
     public void onResume() {
         super.onResume();
-        ApiService.apiService.getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
+        ApiHelper.apiService.getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
             @Override
             public void onResponse(Call<MedicalRecord> call, Response<MedicalRecord> response) {
                 medicalRecord = response.body();

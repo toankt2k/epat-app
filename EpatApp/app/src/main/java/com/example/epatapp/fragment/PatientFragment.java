@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.epatapp.R;
 import com.example.epatapp.adapter.PatientAdapter;
+import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.Patient;
 import com.example.epatapp.models.ResultPatient;
@@ -56,7 +57,7 @@ public class PatientFragment extends Fragment {
                 if(s.isEmpty()){
                     adapter.setList(list);
                 }else {
-                    ApiService.apiService.filterPatient(s).enqueue(new Callback<ResultPatient>() {
+                    ApiHelper.apiService.filterPatient(s).enqueue(new Callback<ResultPatient>() {
                         @Override
                         public void onResponse(Call<ResultPatient> call, Response<ResultPatient> response) {
                             ResultPatient resultPatient = response.body();
