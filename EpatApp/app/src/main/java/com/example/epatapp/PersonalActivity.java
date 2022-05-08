@@ -54,7 +54,7 @@ public class PersonalActivity extends AppCompatActivity{
         birth.setEnabled(false);
         depart.setEnabled(false);
         name.setText(account.getAccount_name());
-        ApiHelper.apiService.getDepartmentById(account.getDepartment_id()).enqueue(new Callback<Department>() {
+        ApiHelper.getInstance().getApiService().getDepartmentById(account.getDepartment_id()).enqueue(new Callback<Department>() {
             @Override
             public void onResponse(Call<Department> call, Response<Department> response) {
                 if(response.isSuccessful()){

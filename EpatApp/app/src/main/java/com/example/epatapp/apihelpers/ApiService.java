@@ -58,4 +58,7 @@ public interface ApiService {
     @GET("MedicalRecords/{id}")
     Call<MedicalRecord> getMedicalRecordById(@Path("id") String id);
 
+    @POST("MedicalRecords")
+    Call<ResponseBody> addMedicalRecord(@Body MedicalRecord medicalRecord);
+
 }

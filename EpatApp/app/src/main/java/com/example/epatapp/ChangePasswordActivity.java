@@ -53,7 +53,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 String re_new = retype_new_pass.getText().toString();
                 if(account.getPassword().equals(old) && new_p.equals(re_new) && !new_p.isEmpty() && !re_new.isEmpty()){
                     account.setPassword(new_p);
-                    ApiHelper.apiService.updateAccount(account).enqueue(new Callback<ResponseBody>() {
+                    ApiHelper.getInstance().getApiService().updateAccount(account).enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                             if(response.isSuccessful()){

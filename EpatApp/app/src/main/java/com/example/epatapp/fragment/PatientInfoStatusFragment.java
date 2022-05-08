@@ -96,11 +96,13 @@ public class PatientInfoStatusFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ApiHelper.apiService.getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
+        ApiHelper.getInstance().getApiService().getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
             @Override
             public void onResponse(Call<MedicalRecord> call, Response<MedicalRecord> response) {
-                medicalRecord = response.body();
-                setStatus();
+                if(response.isSuccessful()) {
+                    medicalRecord = response.body();
+                    setStatus();
+                }
             }
 
             @Override

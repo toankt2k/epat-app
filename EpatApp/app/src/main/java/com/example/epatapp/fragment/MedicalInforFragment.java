@@ -63,7 +63,7 @@ public class MedicalInforFragment extends Fragment implements DatePickerDialog.O
                         medicalRecord.setDiagnose(reason);
                         medicalRecord.setDiseases(old_info);
                         medicalRecord.setSymptom(symp);
-                        ApiHelper.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
+                        ApiHelper.getInstance().getApiService().updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if(response.isSuccessful()) {
@@ -125,14 +125,16 @@ public class MedicalInforFragment extends Fragment implements DatePickerDialog.O
     @Override
     public void onResume() {
         super.onResume();
-        ApiHelper.apiService.getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
+        ApiHelper.getInstance().getApiService().getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
             @Override
             public void onResponse(Call<MedicalRecord> call, Response<MedicalRecord> response) {
-                medicalRecord = response.body();
-                dateIn.setText(new SimpleDateFormat("dd/MM/yyyy").format(medicalRecord.getHospitalized_day()));
-                diseases.setText(medicalRecord.getDiseases());
-                diagnose.setText(medicalRecord.getDiagnose());
-                sympton.setText(medicalRecord.getSymptom());
+                if(response.isSuccessful()) {
+                    medicalRecord = response.body();
+                    dateIn.setText(new SimpleDateFormat("dd/MM/yyyy").format(medicalRecord.getHospitalized_day()));
+                    diseases.setText(medicalRecord.getDiseases());
+                    diagnose.setText(medicalRecord.getDiagnose());
+                    sympton.setText(medicalRecord.getSymptom());
+                }
             }
 
             @Override

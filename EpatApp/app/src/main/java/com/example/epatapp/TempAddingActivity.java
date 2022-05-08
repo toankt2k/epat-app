@@ -99,7 +99,7 @@ public class TempAddingActivity extends AppCompatActivity implements DatePickerD
                         Status status = new Status(dateTime, temp, heart, heal_atm, spo2);
                         statusList.add(status);
                         medicalRecord.setStatus(gson.toJson(statusList));
-                        ApiHelper.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
+                        ApiHelper.getInstance().getApiService().updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if(response.isSuccessful()){

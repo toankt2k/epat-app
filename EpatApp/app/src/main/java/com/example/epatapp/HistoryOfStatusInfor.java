@@ -88,16 +88,17 @@ public class HistoryOfStatusInfor extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ApiHelper.apiService.getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
+        ApiHelper.getInstance().getApiService().getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
             @Override
             public void onResponse(Call<MedicalRecord> call, Response<MedicalRecord> response) {
-                medicalRecord = response.body();
-                Type listType = new TypeToken<ArrayList<Status>>(){}.getType();
-                Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
-                statusList = gson.fromJson(medicalRecord.getStatus(), listType);
-                if(statusList == null) statusList = new ArrayList<>();
-                adapter.setList(statusList);
-
+                if(response.isSuccessful()) {
+                    medicalRecord = response.body();
+                    Type listType = new TypeToken<ArrayList<Status>>() {}.getType();
+                    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+                    statusList = gson.fromJson(medicalRecord.getStatus(), listType);
+                    if (statusList == null) statusList = new ArrayList<>();
+                    adapter.setList(statusList);
+                }
             }
 
             @Override

@@ -87,7 +87,7 @@ public class PatientInfoActivity extends AppCompatActivity implements DatePicker
                         patient.setPhone_number(ph);
                         patient.setAddress(add);
                         System.out.println("..............."+patient.toString());
-                        ApiHelper.apiService.updatePatient(patient).enqueue(new Callback<ResponseBody>() {
+                        ApiHelper.getInstance().getApiService().updatePatient(patient).enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if(response.isSuccessful()) {

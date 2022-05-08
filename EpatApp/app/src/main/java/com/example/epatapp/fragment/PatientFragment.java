@@ -57,11 +57,13 @@ public class PatientFragment extends Fragment {
                 if(s.isEmpty()){
                     adapter.setList(list);
                 }else {
-                    ApiHelper.apiService.filterPatient(s).enqueue(new Callback<ResultPatient>() {
+                    ApiHelper.getInstance().getApiService().filterPatient(s).enqueue(new Callback<ResultPatient>() {
                         @Override
                         public void onResponse(Call<ResultPatient> call, Response<ResultPatient> response) {
-                            ResultPatient resultPatient = response.body();
-                            adapter.setList(resultPatient.getData());
+                            if(response.isSuccessful()) {
+                                ResultPatient resultPatient = response.body();
+                                adapter.setList(resultPatient.getData());
+                            }
                         }
 
                         @Override

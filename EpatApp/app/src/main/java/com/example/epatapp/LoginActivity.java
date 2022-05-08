@@ -25,7 +25,6 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private Button loginBtn;
-    private TextView text;
     private EditText eUsername, ePassword;
     private SharedPreferences sharedPreferences;
     @Override
@@ -35,14 +34,13 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
         sharedPreferences = getSharedPreferences("authenticated", MODE_PRIVATE);
-
         String token = sharedPreferences.getString("token", null);
-        if(token!=null){
-            ApiHelper.token = token;
+        Account account = new Gson().fromJson(sharedPreferences.getString("account", null), Account.class);
+        if(token!=null && account!=null){
+            ApiHelper.getInstance().setSharedPreferences(sharedPreferences);
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
-        text = findViewById(R.id.loginLabel);
         eUsername = findViewById(R.id.editTextTextPersonName);
         ePassword = findViewById(R.id.editTextTextPassword);
         setComponent();
@@ -75,11 +73,12 @@ public class LoginActivity extends AppCompatActivity {
                     Account account1 = resultLogin.getAccount();
                     String accountJson = new Gson().toJson(account1);
                     String token = resultLogin.getToken();
-                    if(token!=null){
+                    if(token!=null & account1 != null){
                         if(!token.isEmpty()){
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             sharedPreferences.edit().putString("account", accountJson).commit();
                             sharedPreferences.edit().putString("token", token).commit();
-                            ApiHelper.token = token;
+                            ApiHelper.getInstance().setSharedPreferences(sharedPreferences);
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
 

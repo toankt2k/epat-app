@@ -96,10 +96,11 @@ public class PatientActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ApiHelper.apiService.getPatientById(patient.getPatient_id()).enqueue(new Callback<Patient>() {
+        ApiHelper.getInstance().getApiService().getPatientById(patient.getPatient_id()).enqueue(new Callback<Patient>() {
             @Override
             public void onResponse(Call<Patient> call, Response<Patient> response) {
-                patient = response.body();
+                if(response.isSuccessful())
+                    patient = response.body();
             }
 
             @Override

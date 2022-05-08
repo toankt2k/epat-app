@@ -81,15 +81,17 @@ public class HistoryOfTreatmentFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ApiHelper.apiService.getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
+        ApiHelper.getInstance().getApiService().getMedicalRecordById(medicalRecord.getMedical_record_id()).enqueue(new Callback<MedicalRecord>() {
             @Override
             public void onResponse(Call<MedicalRecord> call, Response<MedicalRecord> response) {
-                medicalRecord = response.body();
-                Type listType = new TypeToken<ArrayList<Treament>>(){}.getType();
-                Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
-                treamentList = gson.fromJson(medicalRecord.getTreatment(), listType);
-                if(treamentList == null) treamentList = new ArrayList<>();
-                adapter.setList(treamentList);
+                if(response.isSuccessful()) {
+                    medicalRecord = response.body();
+                    Type listType = new TypeToken<ArrayList<Treament>>() {}.getType();
+                    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+                    treamentList = gson.fromJson(medicalRecord.getTreatment(), listType);
+                    if (treamentList == null) treamentList = new ArrayList<>();
+                    adapter.setList(treamentList);
+                }
             }
 
             @Override

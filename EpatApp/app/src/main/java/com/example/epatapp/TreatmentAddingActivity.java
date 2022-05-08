@@ -92,7 +92,7 @@ public class TreatmentAddingActivity extends AppCompatActivity implements DatePi
                         Treament treament = new Treament(dt, prog);
                         treamentList.add(treament);
                         medicalRecord.setTreatment(gson.toJson(treamentList));
-                        ApiHelper.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
+                        ApiHelper.getInstance().getApiService().updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                 if(response.isSuccessful()){

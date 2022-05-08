@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -15,6 +16,7 @@ import com.example.epatapp.apihelpers.ApiHelper;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
 import com.example.epatapp.models.Patient;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MedicalRecordsActivity extends AppCompatActivity {
+    private FloatingActionButton fab;
     private ImageView back;
     private TextView name, code;
     private RecyclerView recyclerView;
@@ -39,6 +42,16 @@ public class MedicalRecordsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_medical_records);
 
         patient = (Patient) getIntent().getSerializableExtra("patient");
+
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MedicalRecordsActivity.this, AddMedicalRecordActivity.class);
+                intent.putExtra("patient", patient);
+                startActivity(intent);
+            }
+        });
 
         name = findViewById(R.id.patientName);
         code = findViewById(R.id.patientCode);
@@ -63,11 +76,14 @@ public class MedicalRecordsActivity extends AppCompatActivity {
     }
 
     private void callApi() {
-        ApiHelper.apiService.getMedicalRecords(patient.getPatient_id()).enqueue(new Callback<List<MedicalRecord>>() {
+        ApiHelper.getInstance().getApiService().getMedicalRecords(patient.getPatient_id()).enqueue(new Callback<List<MedicalRecord>>() {
             @Override
             public void onResponse(Call<List<MedicalRecord>> call, Response<List<MedicalRecord>> response) {
-                List<MedicalRecord> medicalRecords = response.body();
-                adapter.setList(medicalRecords);
+                if(response.isSuccessful()){
+                    List<MedicalRecord> medicalRecords = response.body();
+                    adapter.setList(medicalRecords);
+                }
+
             }
 
             @Override
