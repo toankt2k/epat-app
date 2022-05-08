@@ -5,7 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.epatapp.adapter.MedicalRecordAdapter;
 import com.example.epatapp.apihelpers.ApiService;
@@ -20,6 +23,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MedicalRecordsActivity extends AppCompatActivity {
+    private ImageView back;
+    private TextView name, code;
     private RecyclerView recyclerView;
     private MedicalRecordAdapter adapter;
     private List<MedicalRecord> list;
@@ -31,11 +36,27 @@ public class MedicalRecordsActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_medical_records);
+
+        patient = (Patient) getIntent().getSerializableExtra("patient");
+
+        name = findViewById(R.id.patientName);
+        code = findViewById(R.id.patientCode);
+        name.setText(patient.getFullname());
+        code.setText(patient.getPatient_code());
+
+        back = findViewById(R.id.back_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         recyclerView = findViewById(R.id.medicalRecords);
         list = new ArrayList<>();
-        patient = (Patient) getIntent().getSerializableExtra("patient");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MedicalRecordAdapter(this, list);
+        adapter.setPatient(patient);
         recyclerView.setAdapter(adapter);
         callApi();
     }

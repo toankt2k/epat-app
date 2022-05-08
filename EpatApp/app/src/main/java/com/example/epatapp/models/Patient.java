@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 //bệnh nhân
-public class Patient extends BaseEntity implements Serializable {
+public class Patient extends BaseEntity {
     /// <summary>
     /// khóa chính
     /// </summary>
     private String patient_id;
+
+    /// <summary>
+    /// mã bệnh nhân
+    /// </summary>
+    private String patient_code;
 
     /// <summary>
     /// tên đầy đủ
@@ -46,8 +51,9 @@ public class Patient extends BaseEntity implements Serializable {
     /// </summary>
     private String description;
 
-    public Patient(String patient_id, String fullname, Date date_of_birth, int gender, String identity_number, String phone_number, String address, String description) {
+    public Patient(String patient_id, String patient_code, String fullname, Date date_of_birth, int gender, String identity_number, String phone_number, String address, String description) {
         this.patient_id = patient_id;
+        this.patient_code = patient_code;
         this.fullname = fullname;
         this.date_of_birth = date_of_birth;
         this.gender = gender;
@@ -119,5 +125,13 @@ public class Patient extends BaseEntity implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPatient_code() {
+        return patient_code;
+    }
+
+    public void setPatient_code(String patient_code) {
+        this.patient_code = patient_code;
     }
 }

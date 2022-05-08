@@ -9,17 +9,27 @@ import android.view.Window;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.Patient;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PatientActivity extends AppCompatActivity {
 
+    private ImageView back;
     private ArrayList<String> funcName = new ArrayList<>();
     private ListView funcs;
     private Patient patient;
+    private TextView name, code;
 
 
     @Override
@@ -33,6 +43,17 @@ public class PatientActivity extends AppCompatActivity {
     }
 
     private void setCommponents(){
+        name = findViewById(R.id.personName);
+        code = findViewById(R.id.personCode);
+        name.setText(patient.getFullname());
+        code.setText(patient.getPatient_code());
+        back = findViewById(R.id.back_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         setListFunc();
 
     }
@@ -67,6 +88,22 @@ public class PatientActivity extends AppCompatActivity {
 //                        startActivity(intent3);
 //                        break;
                 }
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ApiService.apiService.getPatientById(patient.getPatient_id()).enqueue(new Callback<Patient>() {
+            @Override
+            public void onResponse(Call<Patient> call, Response<Patient> response) {
+                patient = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<Patient> call, Throwable t) {
+                Toast.makeText(PatientActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
             }
         });
     }

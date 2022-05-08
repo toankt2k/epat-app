@@ -43,7 +43,7 @@
                     >
 
                     <ImageView
-
+                        android:id="@+id/back_btn"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
@@ -66,7 +66,6 @@
                     >
 
                     <TextView
-                        android:id="@+id/personName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -80,7 +79,7 @@
                         android:layout_marginLeft="0dp" />
 
                     <TextView
-                        android:id="@+id/personCode"
+                        android:id="@+id/personName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -193,7 +192,42 @@
                             android:background="@drawable/custom_input"
                             android:hint="Số CMND/CCCD"
                             android:inputType="number" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="50dp"
+                            android:text="Số điện thoại"/>
+                        <EditText
+                            android:id="@+id/patient_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginRight="21dp"
+                            android:background="@drawable/custom_input"
+                            android:hint="Số điện thoại"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="50dp"
+                            android:text="Địa chỉ"/>
+                        <EditText
+                            android:id="@+id/patient_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="21dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginRight="21dp"
+                            android:background="@drawable/custom_input"
+                            android:hint="Địa chỉ"
+                            android:inputType="text" />
                         <Button
+                            android:id="@+id/btn_update_patient"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"

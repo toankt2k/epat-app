@@ -43,7 +43,7 @@
                     >
 
                     <ImageView
-
+                        android:id="@+id/back_btn"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
@@ -72,12 +72,12 @@
                         android:gravity="center_vertical"
                         android:layout_weight="1"
                         android:textColor="#ffffff"
-                        android:text="Nhâp thông tin điều trị"
+                        android:text="Nhâp thông tin trạng thái"
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="0dp" />
 
                     <TextView
-                        android:id="@+id/patient_name"
+                        android:id="@+id/patientName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -109,12 +109,19 @@
                     android:orientation="vertical"
                     android:paddingBottom="20dp">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="50dp"
+                        android:text="Ngày đo"/>
+
                     <LinearLayout
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="21dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="0dp"
                         android:layout_marginRight="21dp"
                         android:weightSum="10"
                         android:background="@drawable/custom_input">
@@ -146,45 +153,73 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="50dp"
+                        android:text="Thời gian đo"/>
+
                     <EditText
                         android:id="@+id/temp_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="21dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="0dp"
                         android:layout_marginRight="21dp"
                         android:background="@drawable/custom_input"
                         android:hint="Thời gian đo"
                         android:inputType="time" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="50dp"
+                        android:text="Nhiệt độ"/>
 
                     <EditText
                         android:id="@+id/temp_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="21dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="0dp"
                         android:layout_marginRight="21dp"
                         android:background="@drawable/custom_input"
                         android:hint="Nhiệt độ"
                         android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="50dp"
+                        android:text="Huyết áp"/>
 
                     <EditText
                         android:id="@+id/heal_atm_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="21dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="0dp"
                         android:layout_marginRight="21dp"
                         android:background="@drawable/custom_input"
                         android:hint="Huyết áp"
                         android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="50dp"
+                        android:text="Nhịp tim"/>
 
                     <EditText
                         android:id="@+id/heart_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="21dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="0dp"
                         android:layout_marginRight="21dp"
                         android:background="@drawable/custom_input"
                         android:hint="Nhịp tim"

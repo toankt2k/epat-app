@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:stretchColumns="*">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:elevation="5dp"
+    android:layout_margin="5dp">
+    <TableLayout
+        android:stretchColumns="*"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <TableRow>
         <TextView
             android:id="@+id/date"
@@ -20,7 +29,7 @@
             android:id="@+id/temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Niệt độ: "/>
+            android:text="Nhiệt độ: "/>
         <TextView
             android:id="@+id/heal_atm"
             android:layout_width="wrap_content"
@@ -38,3 +47,4 @@
             android:text="SPO2: "/>
     </TableRow>
 </TableLayout>
+</androidx.cardview.widget.CardView>

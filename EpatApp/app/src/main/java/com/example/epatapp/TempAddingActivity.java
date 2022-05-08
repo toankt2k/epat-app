@@ -8,6 +8,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
+import com.example.epatapp.models.Patient;
 import com.example.epatapp.models.Status;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,6 +32,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,16 +45,33 @@ public class TempAddingActivity extends AppCompatActivity implements DatePickerD
     private MedicalRecord medicalRecord;
     private List<Status> statusList;
     private Gson gson;
+    private TextView name;
+    private ImageView back;
+    private Patient patient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_temp_adding);
+
+        name = findViewById(R.id.patientName);
+        patient = (Patient) getIntent().getSerializableExtra("patient");
+        name.setText(patient.getFullname());
+        back = findViewById(R.id.back_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         medicalRecord = (MedicalRecord) getIntent().getSerializableExtra("medical_record");
         Type listType = new TypeToken<ArrayList<Status>>(){}.getType();
         gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
         statusList = gson.fromJson(medicalRecord.getStatus(), listType);
+        if(statusList == null) statusList = new ArrayList<>();
+
         setComponents();
     }
 
@@ -77,15 +98,20 @@ public class TempAddingActivity extends AppCompatActivity implements DatePickerD
                         Status status = new Status(dateTime, temp, heart, heal_atm, spo2);
                         statusList.add(status);
                         medicalRecord.setStatus(gson.toJson(statusList));
-                        ApiService.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<MedicalRecord>() {
+                        ApiService.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
                             @Override
-                            public void onResponse(Call<MedicalRecord> call, Response<MedicalRecord> response) {
-                                Toast.makeText(TempAddingActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                                finish();
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if(response.isSuccessful()){
+                                    Toast.makeText(TempAddingActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                                else{
+                                    Toast.makeText(TempAddingActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                                }
                             }
 
                             @Override
-                            public void onFailure(Call<MedicalRecord> call, Throwable t) {
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
                                 Toast.makeText(TempAddingActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
                             }
                         });

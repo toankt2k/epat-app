@@ -13,12 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.epatapp.MedicalRecordDetailActivity;
 import com.example.epatapp.R;
 import com.example.epatapp.models.MedicalRecord;
+import com.example.epatapp.models.Patient;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class MedicalRecordAdapter extends RecyclerView.Adapter<MedicalRecordAdapter.MedicalRecordViewHolder>{
     private Context context;
+    private Patient patient;
     private List<MedicalRecord> list;
 
     public MedicalRecordAdapter(Context context, List<MedicalRecord> list) {
@@ -28,6 +30,9 @@ public class MedicalRecordAdapter extends RecyclerView.Adapter<MedicalRecordAdap
     public void setList(List<MedicalRecord> list){
         this.list = list;
         notifyDataSetChanged();
+    }
+    public void setPatient(Patient patient){
+        this.patient = patient;
     }
 
     @NonNull
@@ -49,6 +54,7 @@ public class MedicalRecordAdapter extends RecyclerView.Adapter<MedicalRecordAdap
             public void onClick(View view) {
                 Intent intent = new Intent(context, MedicalRecordDetailActivity.class);
                 intent.putExtra("medical_record", medicalRecord);
+                intent.putExtra("patient", patient);
                 context.startActivity(intent);
             }
         });

@@ -3,7 +3,6 @@ package com.example.epatapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -17,9 +16,6 @@ import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.Account;
 import com.google.gson.Gson;
 
-import java.util.List;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

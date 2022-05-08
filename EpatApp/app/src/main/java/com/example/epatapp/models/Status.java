@@ -1,8 +1,9 @@
 package com.example.epatapp.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Status {
+public class Status implements Serializable {
     private Date date;
     private String temp;
     private String heart;

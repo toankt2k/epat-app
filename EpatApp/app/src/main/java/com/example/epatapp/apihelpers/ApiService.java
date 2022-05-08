@@ -1,6 +1,8 @@
 package com.example.epatapp.apihelpers;
 
+import com.example.epatapp.models.Department;
 import com.example.epatapp.models.MedicalRecord;
+import com.example.epatapp.models.Patient;
 import com.example.epatapp.models.ResultPatient;
 import com.example.epatapp.models.Account;
 import com.google.gson.Gson;
@@ -28,16 +30,31 @@ public interface ApiService {
             .create(ApiService.class);
     @GET("Accounts")
     Call<List<Account>> getAccounts();
+
     @PUT("Accounts")
-    Call<Account> updateAccount();
+    Call<ResponseBody> updateAccount(@Body Account account);
+
     @POST("Accounts/login")
     Call<Account> login(@Body Account account);
+
+    @GET("Departments/{id}")
+    Call<Department> getDepartmentById(@Path("id") String id);
+
     @GET("Patients/filter")
     Call<ResultPatient> filterPatient(@Query("textFilter") String name);
+
+    @GET("Patients/{id}")
+    Call<Patient> getPatientById(@Path("id") String id);
+
+    @PUT("Patients")
+    Call<ResponseBody> updatePatient(@Body Patient patient);
+
     @GET("MedicalRecords/patient/{id}")
     Call<List<MedicalRecord>> getMedicalRecords(@Path("id") String id);
+
     @PUT("MedicalRecords")
-    Call<MedicalRecord> updateMedicalRecord(@Body MedicalRecord medicalRecord);
+    Call<ResponseBody> updateMedicalRecord(@Body MedicalRecord medicalRecord);
+
     @GET("MedicalRecords/{id}")
     Call<MedicalRecord> getMedicalRecordById(@Path("id") String id);
 

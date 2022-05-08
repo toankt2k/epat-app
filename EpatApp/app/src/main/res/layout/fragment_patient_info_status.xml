@@ -110,7 +110,7 @@
 
         </LinearLayout>
         <Button
-            android:id="@+id/updateStatusBtn"
+            android:id="@+id/historyStatusBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -119,7 +119,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_button_submit"
-            android:text="Cập nhật"
+            android:text="Lịch sử trạng thái"
             app:backgroundTint="#3182FB" />
     </LinearLayout>
 

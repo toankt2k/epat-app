@@ -1,8 +1,9 @@
 package com.example.epatapp.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class BaseEntity {
+public class BaseEntity implements Serializable {
     /// <summary>
     /// Người tạo
     /// </summary>

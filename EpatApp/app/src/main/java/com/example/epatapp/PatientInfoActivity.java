@@ -12,22 +12,33 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.epatapp.adapter.TabAdapter;
+import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.fragment.PatientInfoInfoFragment;
 import com.example.epatapp.fragment.PatientInfoStatusFragment;
 import com.example.epatapp.models.Patient;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PatientInfoActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     private ConstraintLayout picker;
-    private EditText birth, name, idNum;
+    private ImageView back;
+    private EditText birth, name, idNum, phone, address;
     private Patient patient;
     private Button btnUpdate;
-
+    private TextView tvName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,17 +51,69 @@ public class PatientInfoActivity extends AppCompatActivity implements DatePicker
 
     private void setComponents() {
         setPicker();
+
+        patient = (Patient) getIntent().getSerializableExtra("patient");
+
+        tvName = findViewById(R.id.personName);
+        tvName.setText(patient.getFullname());
+
         birth = findViewById(R.id.patient_birth);
         name = findViewById(R.id.patient_name);
         idNum = findViewById(R.id.patient_cmnd);
-        patient = (Patient) getIntent().getSerializableExtra("patient");
+        phone = findViewById(R.id.patient_phone);
+        address = findViewById(R.id.patient_address);
+        btnUpdate = findViewById(R.id.btn_update_patient);
+
         name.setText(patient.getFullname());
         birth.setText(new SimpleDateFormat("dd/MM/yyyy").format(patient.getDate_of_birth()));
         idNum.setText(patient.getIdentity_number());
+        phone.setText(patient.getPhone_number());
+        address.setText(patient.getAddress());
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String n = name.getText().toString();
+                String date = birth.getText().toString();
+                String id = idNum.getText().toString();
+                String ph = phone.getText().toString();
+                String add = address.getText().toString();
+                if(!n.isEmpty() && !date.isEmpty() && !id.isEmpty() && !ph.isEmpty() && !add.isEmpty()){
+                    try {
+                        patient.setFullname(n);
+                        patient.setDate_of_birth(new SimpleDateFormat("dd/MM/yyyy").parse(date));
+                        patient.setIdentity_number(id);
+                        patient.setPhone_number(ph);
+                        patient.setAddress(add);
+                        System.out.println("..............."+patient.toString());
+                        ApiService.apiService.updatePatient(patient).enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if(response.isSuccessful()) {
+                                    Toast.makeText(PatientInfoActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                                else{
+                                    Toast.makeText(PatientInfoActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                                }
+                            }
 
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                Toast.makeText(PatientInfoActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        back = findViewById(R.id.back_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

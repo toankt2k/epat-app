@@ -44,7 +44,7 @@
                     >
 
                     <ImageView
-
+                        android:id="@+id/back_btn"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"

@@ -18,24 +18,19 @@ import androidx.fragment.app.Fragment;
 import com.example.epatapp.R;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
-import com.example.epatapp.models.Treament;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MedicalInforFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
     ConstraintLayout picker;
-    EditText dateIn, diagnose, diseases;
+    EditText dateIn, diagnose, diseases, sympton;
     Button btnUpdate;
     MedicalRecord medicalRecord;
     @Nullable
@@ -53,26 +48,34 @@ public class MedicalInforFragment extends Fragment implements DatePickerDialog.O
         dateIn.setText(new SimpleDateFormat("dd/MM/yyyy").format(medicalRecord.getHospitalized_day()));
         diseases.setText(medicalRecord.getDiseases());
         diagnose.setText(medicalRecord.getDiagnose());
+        sympton.setText(medicalRecord.getSymptom());
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String date = dateIn.getText().toString();
                 String reason = diagnose.getText().toString();
                 String old_info = diseases.getText().toString();
-                if(!date.isEmpty() && !reason.isEmpty() && !old_info.isEmpty()){
+                String symp = sympton.getText().toString();
+                if(!date.isEmpty() && !reason.isEmpty() && !old_info.isEmpty() && !symp.isEmpty()){
                     try {
                         medicalRecord.setHospitalized_day(new SimpleDateFormat("dd/MM/yyyy").parse(date));
                         medicalRecord.setDiagnose(reason);
                         medicalRecord.setDiseases(old_info);
-                        ApiService.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<MedicalRecord>() {
+                        medicalRecord.setSymptom(symp);
+                        ApiService.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
                             @Override
-                            public void onResponse(Call<MedicalRecord> call, Response<MedicalRecord> response) {
-                                Toast.makeText(getContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                                getActivity().finish();
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if(response.isSuccessful()) {
+                                    Toast.makeText(getContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                                    getActivity().finish();
+                                }
+                                else{
+                                    Toast.makeText(getContext(), "Lỗi", Toast.LENGTH_SHORT).show();
+                                }
                             }
 
                             @Override
-                            public void onFailure(Call<MedicalRecord> call, Throwable t) {
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
                                 Toast.makeText(getContext(), "Lỗi", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -90,6 +93,7 @@ public class MedicalInforFragment extends Fragment implements DatePickerDialog.O
         diagnose = view.findViewById(R.id.patient_reason);
         diseases = view.findViewById(R.id.old_info);
         btnUpdate = view.findViewById(R.id.medicalRecords_submit_btn);
+        sympton = view.findViewById(R.id.symptom);
     }
 
     private void setPicker(View view){
@@ -127,6 +131,7 @@ public class MedicalInforFragment extends Fragment implements DatePickerDialog.O
                 dateIn.setText(new SimpleDateFormat("dd/MM/yyyy").format(medicalRecord.getHospitalized_day()));
                 diseases.setText(medicalRecord.getDiseases());
                 diagnose.setText(medicalRecord.getDiagnose());
+                sympton.setText(medicalRecord.getSymptom());
             }
 
             @Override

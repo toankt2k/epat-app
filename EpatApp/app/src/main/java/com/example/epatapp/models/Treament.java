@@ -1,8 +1,9 @@
 package com.example.epatapp.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Treament {
+public class Treament implements Serializable {
     //ngày điều trị;
     private Date date;
     //diễn biến;

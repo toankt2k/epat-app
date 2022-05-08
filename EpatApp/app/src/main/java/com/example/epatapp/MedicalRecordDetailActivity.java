@@ -5,17 +5,24 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.epatapp.adapter.TabAdapter;
 import com.example.epatapp.fragment.HistoryOfTreatmentFragment;
 import com.example.epatapp.fragment.MedicalInforFragment;
 import com.example.epatapp.fragment.PatientInfoStatusFragment;
+import com.example.epatapp.models.Patient;
 import com.google.android.material.tabs.TabLayout;
 
 public class MedicalRecordDetailActivity extends AppCompatActivity {
-    TabLayout tabLayout;
-    ViewPager pager;
+    private TabLayout tabLayout;
+    private ViewPager pager;
+    private TextView name, code;
+    private ImageView back;
+    private Patient patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,18 @@ public class MedicalRecordDetailActivity extends AppCompatActivity {
         setComponents();
     }
     private void setComponents(){
+        name = findViewById(R.id.patientName);
+        code = findViewById(R.id.patientCode);
+        patient = (Patient) getIntent().getSerializableExtra("patient");
+        name.setText(patient.getFullname());
+        code.setText(patient.getPatient_code());
+        back = findViewById(R.id.back_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         setTabLayout();
     }
 

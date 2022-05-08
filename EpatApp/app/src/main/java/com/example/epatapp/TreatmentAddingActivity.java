@@ -8,6 +8,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
+import com.example.epatapp.models.Patient;
 import com.example.epatapp.models.Treament;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,6 +32,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,7 +44,10 @@ public class TreatmentAddingActivity extends AppCompatActivity implements DatePi
     private Button btnAdd;
     private MedicalRecord medicalRecord;
     private List<Treament> treamentList;
+    private TextView name;
+    private ImageView back;
     private Gson gson;
+    private Patient patient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +58,23 @@ public class TreatmentAddingActivity extends AppCompatActivity implements DatePi
         Type listType = new TypeToken<ArrayList<Treament>>(){}.getType();
         gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
         treamentList = gson.fromJson(medicalRecord.getTreatment(), listType);
+        if (treamentList == null) treamentList = new ArrayList<>();
         setComponents();
     }
 
     private void setComponents() {
         setPicker();
+        name = findViewById(R.id.patientName);
+        patient = (Patient) getIntent().getSerializableExtra("patient");
+        name.setText(patient.getFullname());
+        back = findViewById(R.id.back_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         dateIn = findViewById(R.id.date_treament);
         progress = findViewById(R.id.progress);
         btnAdd = findViewById(R.id.treatment_submit_btn);
@@ -72,15 +91,19 @@ public class TreatmentAddingActivity extends AppCompatActivity implements DatePi
                         Treament treament = new Treament(dt, prog);
                         treamentList.add(treament);
                         medicalRecord.setTreatment(gson.toJson(treamentList));
-                        ApiService.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<MedicalRecord>() {
+                        ApiService.apiService.updateMedicalRecord(medicalRecord).enqueue(new Callback<ResponseBody>() {
                             @Override
-                            public void onResponse(Call<MedicalRecord> call, Response<MedicalRecord> response) {
-                                Toast.makeText(TreatmentAddingActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                                finish();
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if(response.isSuccessful()){
+                                    Toast.makeText(TreatmentAddingActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }else{
+                                    Toast.makeText(TreatmentAddingActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                                }
                             }
 
                             @Override
-                            public void onFailure(Call<MedicalRecord> call, Throwable t) {
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
                                 Toast.makeText(TreatmentAddingActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
                             }
                         });

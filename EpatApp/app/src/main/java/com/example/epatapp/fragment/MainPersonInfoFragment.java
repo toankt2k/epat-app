@@ -1,6 +1,9 @@
 package com.example.epatapp.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -13,6 +16,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.epatapp.R;
+import com.example.epatapp.models.Account;
+import com.google.gson.Gson;
 
 import java.util.Calendar;
 
@@ -26,7 +31,6 @@ public class MainPersonInfoFragment extends Fragment implements DatePickerDialog
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_person_info, container, false);
         setComponents(view);
-
         return view;
     }
 
@@ -34,6 +38,7 @@ public class MainPersonInfoFragment extends Fragment implements DatePickerDialog
         setPicker(view);
         birth = view.findViewById(R.id.personal_birth);
         name = view.findViewById(R.id.personal_name);
+
     }
 
     private void setPicker(View view){

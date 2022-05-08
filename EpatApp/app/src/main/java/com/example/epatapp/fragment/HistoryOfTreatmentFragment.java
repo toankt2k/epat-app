@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,11 +20,11 @@ import com.example.epatapp.TreatmentAddingActivity;
 import com.example.epatapp.adapter.TreamentAdapter;
 import com.example.epatapp.apihelpers.ApiService;
 import com.example.epatapp.models.MedicalRecord;
+import com.example.epatapp.models.Patient;
 import com.example.epatapp.models.Treament;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -39,6 +41,7 @@ public class HistoryOfTreatmentFragment extends Fragment {
     private MedicalRecord medicalRecord;
     private TreamentAdapter adapter;
     private List<Treament> treamentList;
+    private Patient patient;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,19 +52,25 @@ public class HistoryOfTreatmentFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fab = view.findViewById(R.id.fab);
         recyclerView = view.findViewById(R.id.treament_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        patient = (Patient) getActivity().getIntent().getSerializableExtra("patient");
         medicalRecord = (MedicalRecord) getActivity().getIntent().getSerializableExtra("medical_record");
+
         Type listType = new TypeToken<ArrayList<Treament>>(){}.getType();
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
         treamentList = gson.fromJson(medicalRecord.getTreatment(), listType);
+        if(treamentList == null) treamentList = new ArrayList<>();
         adapter = new TreamentAdapter(getContext(), treamentList);
         recyclerView.setAdapter(adapter);
+
+        fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), TreatmentAddingActivity.class);
+                intent.putExtra("patient", patient);
                 intent.putExtra("medical_record", medicalRecord);
                 startActivity(intent);
             }
@@ -78,6 +87,7 @@ public class HistoryOfTreatmentFragment extends Fragment {
                 Type listType = new TypeToken<ArrayList<Treament>>(){}.getType();
                 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
                 treamentList = gson.fromJson(medicalRecord.getTreatment(), listType);
+                if(treamentList == null) treamentList = new ArrayList<>();
                 adapter.setList(treamentList);
             }
 
